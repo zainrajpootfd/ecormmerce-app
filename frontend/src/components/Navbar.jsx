@@ -1,0 +1,90 @@
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { assets } from "../assets/assets";
+
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Collection", path: "/collection" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
+
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <div className="flex items-center justify-between py-5 font-medium">
+      <img src={assets.logo} alt="logo" className="w-36" />
+
+      {/* Desktop Navigation */}
+      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+        {navLinks.map((link) => (
+          <NavLink
+            to={link.path}
+            key={link.name}
+            className="flex flex-col items-center gap-1 text-gray-700"
+          >
+            <li>{link.name}</li>
+            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          </NavLink>
+        ))}
+      </ul>
+
+      {/* Profile, Cart, and Mobile Hamburger Menu on Right */}
+      <div className="flex items-center gap-5 ">
+        <img
+          src={assets.search_icon}
+          alt="seacrh-icon"
+          className="w-5 cursor-pointer"
+        />
+        <div className="group relative">
+          <img
+            src={assets.profile_icon}
+            alt="profile-icon"
+            className="w-5 cursor-pointer"
+          />
+          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
+              <p className="cursor-pointer hover:text-black ">My Profile</p>
+              <p className="cursor-pointer hover:text-black ">Orders</p>
+              <p className="cursor-pointer hover:text-black ">Logout</p>
+            </div>
+          </div>
+        </div>
+        <Link to="/cart" className="relative">
+          <img src={assets.cart_icon} alt="cart" className="w-5 min-w-5 " />
+          <p className="text-[8px] absolute bottom-[-5px] right-[-5px] text-center text-white aspect-square bg-black w-4 rounded-full leading-4 ">
+            10
+          </p>
+        </Link>
+
+        {/* Mobile Hamburger Icon */}
+        <button onClick={toggleMobileMenu} className="sm:hidden">
+          <img src={assets.menu_icon} alt="menu" className="w-6" />
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMobileMenuOpen && (
+        <ul className="sm:hidden absolute top-16 left-0 w-full bg-white shadow-lg">
+          {navLinks.map((link) => (
+            <NavLink
+              to={link.path}
+              key={link.name}
+              onClick={() => setIsMobileMenuOpen(false)} // Close menu when link is clicked
+              className="block py-2 px-5 text-gray-700 hover:bg-gray-200"
+            >
+              {link.name}
+            </NavLink>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default Navbar;
