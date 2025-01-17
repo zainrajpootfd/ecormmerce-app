@@ -12,7 +12,7 @@ const LatestCollection = () => {
   }, []);
   return (
     <div className="py-10">
-      <div className="text-center py-8">
+      <div className=" py-8">
         <Title text1="LATEST" text2="COLLECTION" />
         <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-10">
           {latestProduct.map((item, index) => (
