@@ -4,7 +4,7 @@ import { ShopContext } from "../context/ShopContext";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi"; // Icons for toggle
 
 const Collection = () => {
-  const { products } = useContext(ShopContext);
+  const { products, searchTerm } = useContext(ShopContext); // Include `searchTerm` from context
 
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -12,9 +12,16 @@ const Collection = () => {
   const [sortOption, setSortOption] = useState("relevant");
   const [showFilters, setShowFilters] = useState(false); // Toggle state for filters
 
-  // Update filtered products whenever filters or sort options change
+  // Update filtered products whenever filters, sort options, or searchTerm change
   useEffect(() => {
     let updatedProducts = [...products];
+
+    // Filter by search term
+    if (searchTerm) {
+      updatedProducts = updatedProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
 
     // Filter by categories
     if (categories.length > 0) {
@@ -38,7 +45,7 @@ const Collection = () => {
     }
 
     setFilteredProducts(updatedProducts);
-  }, [categories, subCategories, sortOption, products]);
+  }, [categories, subCategories, sortOption, products, searchTerm]);
 
   const handleCategoryChange = (category) => {
     setCategories(
@@ -135,7 +142,7 @@ const Collection = () => {
           </div>
         </div>
         {/* Product grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-9">
           {filteredProducts.map((item) => (
             <ProductItem
               key={item.id}

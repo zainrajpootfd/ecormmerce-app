@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { ShopContext } from "../context/ShopContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -12,6 +13,14 @@ const navLinks = [
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const { search, setSearch, getCartCount } = useContext(ShopContext);
+  const location = useLocation();
+
+  const toggleSearchBar = () => {
+    if (location.pathname === "/collection") {
+      setSearch(!search);
+    }
+  };
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -40,6 +49,7 @@ const Navbar = () => {
           src={assets.search_icon}
           alt="seacrh-icon"
           className="w-5 cursor-pointer"
+          onClick={toggleSearchBar}
         />
         <div className="group relative">
           <img
@@ -58,7 +68,7 @@ const Navbar = () => {
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} alt="cart" className="w-5 min-w-5 " />
           <p className="text-[8px] absolute bottom-[-5px] right-[-5px] text-center text-white aspect-square bg-black w-4 rounded-full leading-4 ">
-            10
+            {getCartCount()}
           </p>
         </Link>
 
