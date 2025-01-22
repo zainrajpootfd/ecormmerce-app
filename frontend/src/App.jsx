@@ -9,22 +9,27 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import PlaceOrder from "./pages/PlaceOrder";
 import Login from "./pages/Login";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="collection" element={<Collection />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="product/:productId" element={<Product />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="place-order" element={<PlaceOrder />} />
-        <Route path="login" element={<Login />} />
-      </Route>
-    </Routes>
+    <div>
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="collection" element={<Collection />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="product/:productId" element={<Product />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="place-order" element={<PlaceOrder />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
 
