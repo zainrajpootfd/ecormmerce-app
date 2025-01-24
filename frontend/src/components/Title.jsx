@@ -7,10 +7,10 @@ const Title = ({ text1, text2 }) => {
         </p>
         <p className="w-8 sm:w-11 h-[2px] bg-[#414141]"></p>
       </div>
-      <p className="w-3/4 text-center text-base  font-light text-gray-400">
+      {/* <p className="w-3/4 text-center text-base  font-light text-gray-400">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the.
-      </p>
+      </p> */}
     </div>
   );
 };
