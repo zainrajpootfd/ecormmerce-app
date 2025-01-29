@@ -3,11 +3,11 @@ import { assets } from "../assets/assets";
 const Contact = () => {
   return (
     <div className=" py-12 px-6">
-      {/* About Us Section */}
+      {/* Contact Us Section */}
       <section className="max-w-6xl mx-auto">
         <div className="flex items-center justify-center gap-2 mt-5">
           <p className="text-3xl font-medium ">
-            <span className="text-gray-400 font-light"> ABOUT</span> US
+            <span className="text-gray-400 font-light"> CONTACT</span> US
           </p>
           <hr className="w-8 h-[1.5px] bg-[#141414]" />
         </div>
@@ -28,7 +28,7 @@ const Contact = () => {
       </section>
 
       {/* Subscribe Section */}
-      <section className="max-w-4xl mx-auto mt-16 text-center bg-white p-8 shadow-md rounded-lg">
+      <section className="max-w-4xl mx-auto mt-24 text-center bg-white p-8 shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold">
           Subscribe now & get <span className="font-bold">20% off</span>
         </h2>
