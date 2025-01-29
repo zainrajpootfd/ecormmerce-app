@@ -2,9 +2,11 @@ import { useState } from "react";
 import { assets } from "../assets/assets";
 import CartItem from "../components/CartItem";
 import Title from "../components/Title";
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
+  const navigate = useNavigate();
   return (
     <div className="border-t  mb-5">
       <div className="text-left flex mt-16 mb-5 ">
@@ -112,6 +114,14 @@ const PlaceOrder = () => {
                 </p>
               </div>
             </div>
+          </div>
+          <div className=" mt-8 flex justify-end md:w-1/2 lg:w-full">
+            <button
+              onClick={() => navigate("/Orders")}
+              className="bg-black text-white font-medium py-2 px-4 rounded  "
+            >
+              Place Order
+            </button>
           </div>
         </div>
       </div>
